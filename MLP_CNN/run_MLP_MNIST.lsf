@@ -1,0 +1,13 @@
+#BSUB -J MLP_MNIST
+#BSUB -q h100
+#BSUB -gpu "num=1:gmodel=NVIDIAH100PCIe"
+#BSUB -n 4
+#BSUB -W 4:00
+#BSUB -o logs/MLP_MNIST.out
+#BSUB -e logs/MLP_MNIST.err
+#BSUB -u mm9628a@american.edu        # Replace with your email
+#BSUB -B                             # Send email at the beginning of the job
+#BSUB -N                             # Send email at the end of the job
+
+source ~/myenv/bin/activate
+python run_MLP_MNIST.py

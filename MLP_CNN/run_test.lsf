@@ -1,0 +1,21 @@
+#!/bin/bash
+#BSUB -J run_test            	   # Job name
+#BSUB -o logs/output.%J.log        # Standard output (%J = job ID)
+#BSUB -e logs/error.%J.log         # Standard error
+#BSUB -q h100                      # Queue to submit to (NVIDIA H100 queue)
+#BSUB -gpu "num=1:gmodel=NVIDIAH100PCIe"  # Request 1 H100 GPU
+#BSUB -n 4                         # Number of CPU cores
+#BSUB -W 04:00                     # Walltime (4 hours max; adjust as needed)
+#BSUB -u mm9628a@american.edu        # Replace with your email
+#BSUB -B                             # Send email at the beginning of the job
+#BSUB -N                             # Send email at the end of the job
+
+# Load Python (if your system uses modules)
+# Example only — uncomment if your system needs this
+# module load python/3.11.3
+
+# Activate virtual environment
+source ~/myenv/bin/activate
+
+# Run your Python script
+python3 run_test.py
